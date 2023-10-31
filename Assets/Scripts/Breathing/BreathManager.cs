@@ -7,6 +7,8 @@ public class BreathManager : MonoBehaviour
 {
     public BreathingDot breathingDot;
     private InputManager _input;
+
+    public String breathingQuadrant;
     
     void Start()
     {
@@ -17,9 +19,9 @@ public class BreathManager : MonoBehaviour
     {
         if (_input.mouseHeld)
         {
-            if (breathingDot.angle >= 0 && breathingDot.angle < 120) { Console.WriteLine("Breathe In"); }
-            if (breathingDot.angle >= 120 && breathingDot.angle < 240) { Console.WriteLine("Hold"); }
-            if (breathingDot.angle >= 240 && breathingDot.angle < 360) { Console.WriteLine("Breathe Out"); }
+            if (breathingDot.angle >= 0 && breathingDot.angle < 120) { breathingQuadrant = "BreatheIn"; }
+            if (breathingDot.angle >= 120 && breathingDot.angle < 240) { breathingQuadrant = "Hold"; }
+            if (breathingDot.angle >= 240 && breathingDot.angle < 360) { breathingQuadrant = "BreatheOut"; }
         }
     }
 }
