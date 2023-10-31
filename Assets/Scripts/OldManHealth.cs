@@ -12,14 +12,14 @@ public class OldManHealth : MonoBehaviour
 
     [SerializeField] private InputManager _input;
     [SerializeField] private BreathManager _breathManager;
+    private Animator _animator;
     
-    // Start is called before the first frame update
+
     void Start()
     {
-        
+        _animator = GetComponent<Animator>();
     }
-
-    // Update is called once per frame
+    
     void Update()
     {
         //Check if the old man is oxygen deprived
@@ -28,10 +28,21 @@ public class OldManHealth : MonoBehaviour
 
         if (oxygenLevel < 0) { oxygenLevel = 0; }
 
-        //Take or give oxygen
-        if (!_input.mouseHeld) { oxygenLevel -= oxygenExpenditure * Time.deltaTime; }
-        else if (_input.mouseHeld && _breathManager.breathingQuadrant.Equals("BreatheIn")) { oxygenLevel += oxygenExpenditure * Time.deltaTime; }
-        
+        //Take or give oxygen depending on quadrant
+        if (_input.mouseHeld && _breathManager.breathingQuadrant.Equals("BreatheIn"))
+        {
+            oxygenLevel += (oxygenExpenditure * 1.25f) * Time.deltaTime;
+            _animator.Play("BreatheIn");
+        }
+        else if (_input.mouseHeld && _breathManager.breathingQuadrant.Equals("Hold"))
+        {
+            _animator.Play("Hold");
+        }
+        else if (!_input.mouseHeld || _breathManager.breathingQuadrant.Equals("BreatheOut"))
+        {
+            oxygenLevel -= oxygenExpenditure * Time.deltaTime;
+            _animator.Play("BreatheOut");
+        }
         if (_input.mouseHeld) { Debug.Log("WORK"); }
     }
 }
