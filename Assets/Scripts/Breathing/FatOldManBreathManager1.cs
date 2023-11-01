@@ -21,10 +21,10 @@ public class FatOldManBreathManager : MonoBehaviour
         
         //Make is so that you can't hold the entire game and win
         if (breathingDot.angle >=  359) { needToLetGo = true; }
-        if (_input.mouseHeldLastFrame) { needToLetGo = false; }
+        if (_input.twoKeyPressed) { needToLetGo = false; }
         
         //Set which quadrant the dot is currently in
-        if (_input.mouseHeld)
+        if (_input.twoKeyHeld)
         {
             if (breathingDot.angle >= 0 && breathingDot.angle < 35 && !needToLetGo) { breathingQuadrant = "BreatheIn"; }
             if (breathingDot.angle >= 35 && breathingDot.angle < 100) { breathingQuadrant = "Hold"; }

@@ -40,17 +40,17 @@ public class OldManHealth : MonoBehaviour
             if (oxygenLevel < 0) { oxygenLevel = 0; }
 
             //Take or give oxygen depending on quadrant
-            if (_input.mouseHeld && _breathManager.breathingQuadrant.Equals("BreatheIn"))
+            if (_input.oneKeyHeld && _breathManager.breathingQuadrant.Equals("BreatheIn"))
             {
                 oxygenLevel += (oxygenExpenditure * 1.25f) * Time.deltaTime;
                 score += 0.5f;
             }
-            else if (_input.mouseHeld && _breathManager.breathingQuadrant.Equals("Hold"))
+            else if (_input.oneKeyHeld && _breathManager.breathingQuadrant.Equals("Hold"))
             {
                 oxygenLevel -= (oxygenExpenditure * 0.15f) * Time.deltaTime;
                 score += 0.1f;
             }
-            else if (!_input.mouseHeld || _breathManager.breathingQuadrant.Equals("BreatheOut")) { oxygenLevel -= oxygenExpenditure * Time.deltaTime; }
+            else if (!_input.oneKeyHeld || _breathManager.breathingQuadrant.Equals("BreatheOut")) { oxygenLevel -= oxygenExpenditure * Time.deltaTime; }
             
             animationControl();
         }
@@ -65,7 +65,7 @@ public class OldManHealth : MonoBehaviour
             isDead = true;
         }
         
-        if (_input.mouseHeld) { Debug.Log("WORK"); }
+        if (_input.oneKeyHeld) { Debug.Log("WORK"); }
     }
 
     public void animationControl()
@@ -74,9 +74,9 @@ public class OldManHealth : MonoBehaviour
         if (oxygenLevel > 0)
         {
             
-            if (_input.mouseHeld && _breathManager.breathingQuadrant.Equals("BreatheIn")) { _animator.Play("BreatheIn"); }
-            else if (_input.mouseHeld && _breathManager.breathingQuadrant.Equals("Hold")) { _animator.Play("Hold"); }
-            else if (!_input.mouseHeld || _breathManager.breathingQuadrant.Equals("BreatheOut")) { _animator.Play("BreatheOut"); }
+            if (_input.oneKeyHeld && _breathManager.breathingQuadrant.Equals("BreatheIn")) { _animator.Play("BreatheIn"); }
+            else if (_input.oneKeyHeld && _breathManager.breathingQuadrant.Equals("Hold")) { _animator.Play("Hold"); }
+            else if (!_input.oneKeyHeld || _breathManager.breathingQuadrant.Equals("BreatheOut")) { _animator.Play("BreatheOut"); }
         }
         else { _animator.Play("DeathOxygenDeprivation"); }
         
