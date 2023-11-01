@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BreathManager : MonoBehaviour
+public class OldManBreathManager : MonoBehaviour
 {
     public BreathingDot breathingDot;
     private InputManager _input;
