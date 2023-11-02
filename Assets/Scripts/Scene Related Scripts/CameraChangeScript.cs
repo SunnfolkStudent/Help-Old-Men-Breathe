@@ -29,11 +29,12 @@ public class CameraChangeScript : MonoBehaviour
     {
         score = float.Parse(scoreText.text.Substring(6));
 
-        if (score == 50f && camIndex == 0)
+        if ((score == 50f && camIndex == 0) || (score == 60f && camIndex == 1))
         {
             camIndex++;
             vcam.Follow = camPositions[camIndex].transform;
-            vcam.m_Lens.OrthographicSize += 6f;
+            
+            if (camIndex == 1) { vcam.m_Lens.OrthographicSize += 6f; }
 
             menIndex++;
             oldMen[menIndex].SetActive(true);
