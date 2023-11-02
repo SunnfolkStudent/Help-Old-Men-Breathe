@@ -2,7 +2,12 @@ fileFormatVersion: 2
 guid: 4beebdb7a27577349ae679f30654ee99
 ScriptedImporter:
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:AnimationClip
+      assembly: UnityEngine.AnimationModule
+      name: help_old_men_breath_3_old_man_Clip
+    second: {fileID: 7400000, guid: cda3d785f7c005449b19bf29f840248d, type: 2}
   serializedVersion: 2
   userData: 
   assetBundleName: 
@@ -95,7 +100,7 @@ ScriptedImporter:
     addSortingGroup: 1
     addShadowCasters: 0
   importFileNodeState: 1
-  platformSettingsDirtyTick: 638345228951164046
+  platformSettingsDirtyTick: 638345236277162365
   textureAssetName: 
   singleSpriteImportData:
   - name: 

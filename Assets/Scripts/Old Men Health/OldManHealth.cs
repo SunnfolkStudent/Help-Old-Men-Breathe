@@ -15,17 +15,21 @@ public class OldManHealth : MonoBehaviour
     public bool isDead = false;
     public bool oxygenDeprived;
 
+    private float timer;
+    
     [SerializeField] private InputManager _input;
     [SerializeField] private OldManBreathManager _breathManager;
     [SerializeField] private TMP_Text _oxygenHUD;
     [SerializeField] private TMP_Text _scoreHUD;
     
     private Animator _animator;
-    
 
+    private SceneController _sceneController;
+    
     void Start()
     {
         _animator = GetComponent<Animator>();
+        _sceneController = GetComponent<SceneController>();
     }
     
     void Update()
@@ -54,6 +58,15 @@ public class OldManHealth : MonoBehaviour
             else if (!_input.oneKeyHeld || _breathManager.breathingQuadrant.Equals("BreatheOut")) { oxygenLevel -= oxygenExpenditure * Time.deltaTime; }
             
             animationControl();
+        }
+        else
+        { 
+            timer += Time.deltaTime;
+            if (timer > 2.5f)
+            {
+
+                _sceneController.LoadSceneByName("endScene");
+            }
         }
 
         //Update oxygen HUD and score text

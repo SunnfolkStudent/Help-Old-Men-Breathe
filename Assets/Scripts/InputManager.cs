@@ -11,10 +11,10 @@ public class InputManager : MonoBehaviour
     public bool mouseHeld = false;
     public bool mouseHeldLastFrame;
 
-    public bool oneKeyHeld;
-    public bool oneKeyPressed;
-    public bool twoKeyHeld;
-    public bool twoKeyPressed;
+    public bool oneKeyHeld, oneKeyPressed;
+    public bool twoKeyHeld, twoKeyPressed;
+    public bool threeKeyHeld, threeKeyPressed;
+    public bool fourKeyHeld, fourKeyPressed;
 
     private Keyboard _keyboard;
 
@@ -36,5 +36,9 @@ public class InputManager : MonoBehaviour
         oneKeyPressed = _keyboard.digit1Key.wasPressedThisFrame;
         twoKeyHeld = _keyboard.digit2Key.isPressed;
         twoKeyPressed = _keyboard.digit2Key.wasPressedThisFrame;
+        threeKeyHeld = _keyboard.digit3Key.isPressed;
+        threeKeyPressed = _keyboard.digit3Key.wasPressedThisFrame;
+        fourKeyHeld = _keyboard.digit4Key.isPressed;
+        fourKeyPressed = _keyboard.digit4Key.wasPressedThisFrame;
     }
 }
