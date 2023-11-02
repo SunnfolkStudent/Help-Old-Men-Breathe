@@ -14,7 +14,10 @@ public class CameraChangeScript : MonoBehaviour
     private float score;
 
     public GameObject[] camPositions;
-    private int index = 0;
+    private int camIndex = 0;
+    
+    public GameObject[] oldMen;
+    private int menIndex = 0;
     
     void Start()
     {
@@ -25,13 +28,15 @@ public class CameraChangeScript : MonoBehaviour
     void Update()
     {
         score = float.Parse(scoreText.text.Substring(6));
-        Debug.Log(score);
 
-        if (score == 50f && index == 0)
+        if (score == 50f && camIndex == 0)
         {
-            index++;
-            vcam.Follow = camPositions[index].transform;
+            camIndex++;
+            vcam.Follow = camPositions[camIndex].transform;
             vcam.m_Lens.OrthographicSize += 6f;
+
+            menIndex++;
+            oldMen[menIndex].SetActive(true);
         }
     }
 }

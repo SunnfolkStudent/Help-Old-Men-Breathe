@@ -26,11 +26,12 @@ public class FatOldManHealth : MonoBehaviour
     void Start()
     {
         _animator = GetComponent<Animator>();
-        score = float.Parse(_scoreHUD.text.Substring(6));
+        
     }
     
     void Update()
     {
+
         if (!isDead)
         {
             //Check if the old man is oxygen deprived
@@ -58,7 +59,7 @@ public class FatOldManHealth : MonoBehaviour
 
         //Update oxygen HUD and score text
         _oxygenHUD.text = "Oxygen: " + (Math.Round(oxygenLevel)) + "%";
-        _scoreHUD.text = "Score: " + Math.Round(score) / 10;
+        _scoreHUD.text = "Score: " + (Math.Round(score + float.Parse(_scoreHUD.text.Substring(6))));
         
         //Rupture lungs if breathe too much
         if (oxygenLevel >= 240)
