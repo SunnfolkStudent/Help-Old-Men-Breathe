@@ -2,31 +2,36 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
+using TMPro;
 
 public class CameraChangeScript : MonoBehaviour
 {
 
     public CinemachineVirtualCamera vcam;
-    
-    private float timer;
-    private bool timerDone;
-    private bool timerOn = false;
+
+    private TMP_Text scoreText;
+
+    private float score;
+
+    public GameObject[] camPositions;
+    private int index = 0;
     
     void Start()
     {
-        
+        scoreText = GetComponent<TMP_Text>();
     }
 
 
     void Update()
     {
-        if (timerOn)
+        score = float.Parse(scoreText.text.Substring(6));
+        Debug.Log(score);
+
+        if (score == 50f && index == 0)
         {
-            timer += Time.deltaTime;
-            if (timer > 1.5f && !timerDone)
-            {
-                
-            }
+            index++;
+            vcam.Follow = camPositions[index].transform;
+            vcam.m_Lens.OrthographicSize += 6f;
         }
     }
 }
