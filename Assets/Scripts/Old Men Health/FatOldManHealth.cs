@@ -26,6 +26,7 @@ public class FatOldManHealth : MonoBehaviour
     void Start()
     {
         _animator = GetComponent<Animator>();
+        score = float.Parse(_scoreHUD.text.Substring(6));
     }
     
     void Update()
