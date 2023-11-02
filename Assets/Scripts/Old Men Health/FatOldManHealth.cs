@@ -69,7 +69,7 @@ public class FatOldManHealth : MonoBehaviour
         }
         //Update oxygen HUD and score text
         _oxygenHUD.text = "Oxygen: " + (Math.Round(oxygenLevel)) + "%";
-        _scoreHUD.text = "Score: " + (Math.Round(score + float.Parse(_scoreHUD.text.Substring(6))));
+        _scoreHUD.text = "Score: " + Math.Round(float.Parse(_scoreHUD.text.Substring(6)) + (score));
         
         //Rupture lungs if breathe too much
         if (oxygenLevel >= 240)

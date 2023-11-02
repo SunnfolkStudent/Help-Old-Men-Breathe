@@ -25,11 +25,18 @@ public class OldManHealth : MonoBehaviour
     private Animator _animator;
 
     private SceneController _sceneController;
+
+    private AudioSource _audio;
+    public AudioClip breatheIn;
+    public AudioClip breatheOut;
+    public AudioClip choke;
+    public AudioClip death;
     
     void Start()
     {
         _animator = GetComponent<Animator>();
         _sceneController = GetComponent<SceneController>();
+        _audio = GetComponent<AudioSource>();
     }
     
     void Update()
@@ -61,6 +68,7 @@ public class OldManHealth : MonoBehaviour
         }
         else
         { 
+            _audio.PlayOneShot(death);
             timer += Time.deltaTime;
             if (timer > 2.5f)
             {
@@ -87,12 +95,24 @@ public class OldManHealth : MonoBehaviour
         //Manage animations
         if (oxygenLevel > 0)
         {
-            
-            if (_input.oneKeyHeld && _breathManager.breathingQuadrant.Equals("BreatheIn")) { _animator.Play("BreatheIn"); }
+
+            if (_input.oneKeyHeld && _breathManager.breathingQuadrant.Equals("BreatheIn"))
+            {
+                _animator.Play("BreatheIn");
+                _audio.PlayOneShot(breatheIn);
+            }
             else if (_input.oneKeyHeld && _breathManager.breathingQuadrant.Equals("Hold")) { _animator.Play("Hold"); }
-            else if (!_input.oneKeyHeld || _breathManager.breathingQuadrant.Equals("BreatheOut")) { _animator.Play("BreatheOut"); }
+            else if (!_input.oneKeyHeld || _breathManager.breathingQuadrant.Equals("BreatheOut"))
+            {
+                _animator.Play("BreatheOut");
+                _audio.PlayOneShot(breatheOut);
+            }
         }
-        else { _animator.Play("DeathOxygenDeprivation"); }
+        else
+        {
+            _animator.Play("DeathOxygenDeprivation");
+            _audio.PlayOneShot(choke);
+        }
         
         if (oxygenLevel >= 120) { _animator.Play("DeathLungRupture"); }
 

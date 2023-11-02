@@ -29,7 +29,7 @@ public class CameraChangeScript : MonoBehaviour
     {
         score = float.Parse(scoreText.text.Substring(6));
 
-        if ((score == 50f && camIndex == 0) || (score == 60f && camIndex == 1))
+        if ((score == 200f && camIndex == 0) || (score == 800f && camIndex == 1))
         {
             camIndex++;
             vcam.Follow = camPositions[camIndex].transform;
